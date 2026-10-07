@@ -277,11 +277,23 @@ def build_report(output_path: Path = OUTPUT_PATH) -> Path:
         "Figure 3. Cross-validation comparison used for model selection.",
         width=6.2,
     )
+    add_picture(
+        document,
+        SCREENSHOTS_DIR / "03_mlflow_runs.png",
+        "Figure 4. MLflow experiment comparison for both candidate models.",
+        width=6.2,
+    )
+    add_picture(
+        document,
+        SCREENSHOTS_DIR / "04_mlflow_best_run.png",
+        "Figure 5. Selected Logistic Regression run details in MLflow.",
+        width=6.2,
+    )
 
     start_section(document, "Packaging and Inference API", 6)
     document.add_paragraph(
         "The winning preprocessing-classifier pipeline is stored with Joblib and accompanied by "
-        "JSON metadata contains feature order, package version, candidate results, run "
+        "JSON metadata that contains feature order, package version, candidate results, run "
         "identifier, "
         "and selection rationale. FastAPI validates all 13 fields and rejects missing, extra, or "
         "out-of-range values before invoking the model."
@@ -304,6 +316,12 @@ def build_report(output_path: Path = OUTPUT_PATH) -> Path:
         "Structured logs include request ID, route, status, latency, and output class. Raw patient "
         "features are deliberately excluded from logs to reduce exposure of sensitive information."
     )
+    add_picture(
+        document,
+        SCREENSHOTS_DIR / "07_docker_api.png",
+        "Figure 6. Healthy isolated Docker container and successful prediction response.",
+        width=6.2,
+    )
 
     start_section(document, "Automated Testing and CI/CD", 7)
     document.add_paragraph(
@@ -325,7 +343,7 @@ def build_report(output_path: Path = OUTPUT_PATH) -> Path:
     add_picture(
         document,
         SCREENSHOTS_DIR / "06_ci_pipeline_success.png",
-        "Figure 4. Successful CI/CD pipeline (replace with genuine run evidence).",
+        "Figure 7. Successful CI/CD pipeline from lint through image packaging.",
         width=6.2,
     )
 
@@ -360,7 +378,13 @@ def build_report(output_path: Path = OUTPUT_PATH) -> Path:
     add_picture(
         document,
         SCREENSHOTS_DIR / "09_kubernetes_workloads.png",
-        "Figure 5. Healthy Kubernetes workloads (replace with genuine evidence).",
+        "Figure 8. Healthy Kubernetes deployments, pods, and exposed services.",
+        width=6.2,
+    )
+    add_picture(
+        document,
+        SCREENSHOTS_DIR / "10_kubernetes_predict.png",
+        "Figure 9. Prediction served through the Kubernetes LoadBalancer service.",
         width=6.2,
     )
 
@@ -386,8 +410,20 @@ def build_report(output_path: Path = OUTPUT_PATH) -> Path:
     )
     add_picture(
         document,
+        SCREENSHOTS_DIR / "05_prometheus_targets.png",
+        "Figure 10. Prometheus API target in the UP state.",
+        width=6.2,
+    )
+    add_picture(
+        document,
         SCREENSHOTS_DIR / "11_grafana_dashboard.png",
-        "Figure 6. Provisioned operations dashboard (replace with genuine evidence).",
+        "Figure 11. Provisioned Grafana operations dashboard with live metrics.",
+        width=6.2,
+    )
+    add_picture(
+        document,
+        SCREENSHOTS_DIR / "12_api_logs.png",
+        "Figure 12. Structured request logs with status, latency, and request IDs.",
         width=6.2,
     )
 
@@ -440,9 +476,9 @@ def build_report(output_path: Path = OUTPUT_PATH) -> Path:
     add_page_number(final_section.footer.paragraphs[0])
     document.add_heading("Appendix: Submission Evidence", level=1)
     document.add_paragraph(
-        "Attach genuine execution screenshots under the screenshots directory. Do not submit "
-        "placeholders. Record the repository URL, successful CI run URL, local or public API "
-        "access instruction, and video link in the final submission form."
+        "The repository screenshots directory contains execution evidence for MLflow, CI/CD, "
+        "Docker, Kubernetes, Prometheus, Grafana, and structured API logs. The repository URL, "
+        "local API access instructions, and demonstration video link complete the submission."
     )
 
     output_path = Path(output_path)

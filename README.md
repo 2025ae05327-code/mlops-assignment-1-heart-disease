@@ -45,7 +45,7 @@ python scripts/build_report.py
 | Containerization | Non-root Dockerfile, model-aware health check, `/predict`, sample request |
 | Production deployment | Kustomize manifests, two replicas, probes, limits, LoadBalancer service |
 | Monitoring and logging | Structured JSON logs, Prometheus counters/histogram, provisioned Grafana dashboard |
-| Documentation and reporting | Setup guide, architecture, final report source/generator, screenshots, generated 10+ page DOCX |
+| Documentation and reporting | Setup guide, architecture, report generator, screenshots, generated 10+ page DOCX |
 
 ## Project Layout
 
@@ -59,7 +59,7 @@ assinment_1/
 |-- artifacts/                       # generated EDA/training/test evidence
 |-- docs/
 |   |-- ARCHITECTURE.md
-|   `-- FINAL_REPORT.md
+|   `-- Heart_Disease_MLOps_Report.docx
 |-- k8s/                             # API, Prometheus, and Grafana manifests
 |-- models/                          # generated pipeline and metadata
 |-- monitoring/                      # local Prometheus/Grafana configuration
