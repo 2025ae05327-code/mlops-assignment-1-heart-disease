@@ -54,7 +54,7 @@ def _tracking_uri(value: str | Path) -> str:
 
 
 def _json_ready(value: Any) -> Any:
-    if value is None or isinstance(value, (str, int, float, bool)):
+    if value is None or isinstance(value, str | int | float | bool):
         return value
     return str(value)
 
