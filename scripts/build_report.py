@@ -458,6 +458,24 @@ def build_report(output_path: Path = OUTPUT_PATH) -> Path:
         "data, evidence, model, report, and image; Kubernetes supplies scalable delivery; and "
         "metrics close the operational feedback loop."
     )
+    document.add_heading("Clean setup and installation", level=2)
+    document.add_paragraph(
+        "A clean Linux host requires Git, Docker Engine with Compose v2, kubectl, Minikube, "
+        "and Python 3.10-3.12. The BITS VM run used an isolated Conda environment so project "
+        "packages did not modify the base environment."
+    )
+    for command in (
+        "conda create -n heart-mlops python=3.12 -y",
+        "conda activate heart-mlops",
+        "python -m pip install --upgrade pip setuptools wheel",
+        "python -m pip install -r requirements-dev.txt",
+        "python -m pip install --no-deps -e .",
+        "python -m pip check",
+    ):
+        paragraph = document.add_paragraph()
+        run = paragraph.add_run(command)
+        run.font.name = "Consolas"
+        run.font.size = Pt(9)
     document.add_heading("Reproduction commands", level=2)
     for command in (
         "python -m heart_disease_mlops.data",
