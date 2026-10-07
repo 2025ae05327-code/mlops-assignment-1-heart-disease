@@ -1,0 +1,30 @@
+{
+  "source_url": "https://archive.ics.uci.edu/ml/machine-learning-databases/heart-disease/processed.cleveland.data",
+  "downloaded_at_utc": "2026-10-07T12:54:38.573429+00:00",
+  "sha256": "a74b7efa387bc9d108d7d0115d831fe9b414b29ae7124f331b622b4efa0427c8",
+  "raw_file": "/home/s2025ae05327/workspace/2025AE05327_PAWAN_SHARMA/assinment_1/mlops-assignment-1-heart-disease-1/data/raw/processed.cleveland.data",
+  "processed_file": "/home/s2025ae05327/workspace/2025AE05327_PAWAN_SHARMA/assinment_1/mlops-assignment-1-heart-disease-1/data/processed/heart_disease_cleaned.csv",
+  "rows": 303,
+  "feature_count": 13,
+  "duplicate_rows": 0,
+  "missing_values": {
+    "age": 0,
+    "sex": 0,
+    "cp": 0,
+    "trestbps": 0,
+    "chol": 0,
+    "fbs": 0,
+    "restecg": 0,
+    "thalach": 0,
+    "exang": 0,
+    "oldpeak": 0,
+    "slope": 0,
+    "ca": 4,
+    "thal": 2,
+    "target": 0
+  },
+  "class_balance": {
+    "0": 164,
+    "1": 139
+  }
+}
