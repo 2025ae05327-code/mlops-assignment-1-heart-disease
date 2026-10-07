@@ -57,6 +57,10 @@ jobs:
         run: python -m heart_disease_mlops.train --quick --cv-folds 3 --n-jobs 2
 
       - name: Build final DOCX report
+        env:
+          STUDENT_NAME: Pawan Sharma
+          STUDENT_ID: 2025AE05327
+          REPOSITORY_URL: https://github.com/${{ github.repository }}
         run: python scripts/build_report.py
 
       - name: Build serving image
