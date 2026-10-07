@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.pytest_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+
+# Generated data and experiment state
+data/raw/
+artifacts/command_logs/
+artifacts/test-results.xml
+mlruns/
+
+# Temporary atomic outputs
+*.tmp
+
+# OS and editor
+.DS_Store
+Thumbs.db
+.vscode/
