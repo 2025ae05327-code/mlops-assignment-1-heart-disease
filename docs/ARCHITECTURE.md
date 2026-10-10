@@ -70,10 +70,3 @@ sequenceDiagram
 | Privacy | Clinical feature values are not written to request logs |
 | CI quality | Lint and tests block training and packaging on failure |
 
-## Important Limitations
-
-The source cohort is small and historical. This assignment does not establish clinical
-utility, probability calibration, subgroup fairness, external validity, privacy compliance,
-or a governed medical threshold. A real system requires clinical validation, human review,
-TLS, authentication, a protected registry, signed images, secrets management, durable
-telemetry, drift tests, and outcome feedback.
