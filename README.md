@@ -5,7 +5,6 @@ the UCI Cleveland dataset. The project downloads and validates data, generates E
 compares tuned Logistic Regression and Random Forest pipelines, tracks experiments in
 MLflow, serves the selected model through FastAPI, and deploys it with Docker or Minikube.
 
-> This is an educational risk classifier, not a medical diagnosis system.
 
 ## Quick Start
 
