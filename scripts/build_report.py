@@ -13,6 +13,7 @@ from docx.enum.section import WD_SECTION
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
+from docx.opc.constants import RELATIONSHIP_TYPE
 from docx.shared import Inches, Pt, RGBColor
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -20,6 +21,10 @@ DOCS_DIR = PROJECT_ROOT / "docs"
 ARTIFACTS_DIR = PROJECT_ROOT / "artifacts"
 SCREENSHOTS_DIR = PROJECT_ROOT / "screenshots"
 OUTPUT_PATH = DOCS_DIR / "Heart_Disease_MLOps_Report.docx"
+DEFAULT_VIDEO_URL = (
+    "https://drive.google.com/file/d/1oA67xS2UBiGP7CPKixTo9nuPc62WDgjd/"
+    "view?usp=drive_link"
+)
 
 
 def read_json(path: Path) -> dict[str, Any]:
@@ -102,6 +107,28 @@ def start_section(document: Document, title: str, number: int) -> None:
 def add_bullets(document: Document, items: list[str]) -> None:
     for item in items:
         document.add_paragraph(item, style="List Bullet")
+
+
+def add_hyperlink(paragraph: Any, text: str, url: str) -> None:
+    """Add a styled external hyperlink without embedding the target file."""
+
+    relationship_id = paragraph.part.relate_to(
+        url, RELATIONSHIP_TYPE.HYPERLINK, is_external=True
+    )
+    hyperlink = OxmlElement("w:hyperlink")
+    hyperlink.set(qn("r:id"), relationship_id)
+    run = OxmlElement("w:r")
+    properties = OxmlElement("w:rPr")
+    color = OxmlElement("w:color")
+    color.set(qn("w:val"), "0563C1")
+    underline = OxmlElement("w:u")
+    underline.set(qn("w:val"), "single")
+    properties.extend([color, underline])
+    link_text = OxmlElement("w:t")
+    link_text.text = text
+    run.extend([properties, link_text])
+    hyperlink.append(run)
+    paragraph._p.append(hyperlink)
 
 
 def add_picture(document: Document, path: Path, caption: str, width: float = 6.4) -> None:
@@ -498,6 +525,10 @@ def build_report(output_path: Path = OUTPUT_PATH) -> Path:
         "Docker, Kubernetes, Prometheus, Grafana, and structured API logs. The repository URL, "
         "local API access instructions, and demonstration video link complete the submission."
     )
+    video_paragraph = document.add_paragraph()
+    video_paragraph.add_run("Demonstration video: ").bold = True
+    video_url = os.getenv("VIDEO_URL", DEFAULT_VIDEO_URL).strip()
+    add_hyperlink(video_paragraph, "Open the recorded pipeline demonstration", video_url)
 
     output_path = Path(output_path)
     output_path.parent.mkdir(parents=True, exist_ok=True)
