@@ -83,12 +83,3 @@ Inspect experiments locally:
 ```bash
 mlflow ui --backend-store-uri ./mlruns --host 0.0.0.0 --port 5000
 ```
-
-
-
-
-
-Before submission, commit the cleaned dataset, selected model, model metadata, generated
-EDA/model plots, genuine CI/container/Kubernetes/monitoring screenshots, final DOCX or PDF,
-repository URL, API access instructions, and short demonstration video link. Generated
-metrics and screenshots must come from your own execution.
